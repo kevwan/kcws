@@ -8,6 +8,7 @@ import sys
 import os
 import w2v
 from sentence import Sentence
+from tqdm import tqdm
 
 totalLine = 0
 longLine = 0
@@ -118,7 +119,7 @@ def main(argc, argv):
                 curFile = os.path.join(dirName, file)
                 #print("processing:%s" % (curFile))
                 fp = open(curFile, "r")
-                for line in fp.readlines():
+                for line in tqdm(fp.readlines(), desc=curFile):
                     line = line.strip()
                     processLine(line, out, vob)
                 fp.close()
