@@ -5,6 +5,7 @@
 # @Last Modified time: 2016-12-09 20:33:30
 import sys
 import os
+from tqdm import tqdm
 
 totalLine = 0
 longLine = 0
@@ -94,10 +95,10 @@ def main(argc, argv):
     curDir = os.path.join(rootDir, dirName)
     for file in fileList:
       if file.endswith(".txt"):
-        curFile = os.path.join(curDir, file)
+        curFile = os.path.join(dirName, file)
         # print("processing:%s" % (curFile))
         fp = open(curFile, "r")
-        for line in fp.readlines():
+        for line in tqdm(fp.readlines(), desc=curFile):
           line = line.strip()
           processLine(line, out)
         fp.close()
